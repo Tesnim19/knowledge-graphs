@@ -18,21 +18,21 @@ Create a structured graph representation of the resume, including key entities s
 2. Explore and analyze the graph using Neo4j's query language, Cypher, to extract meaningful insights and patterns from the resume data.
 
 ## Example Queries
-- Find all skills acquired during education.
-- Identify organizations where the individual has worked.
-- Retrieve details of projects undertaken and the skills utilized.
-- Explore extracurricular activities participated in and organizations involved.
 
 Retrieve Skills Used in Projects
 ```
 MATCH (p:PERSON {name: "Tesnim Abdi"})-[:WORKED_ON]->(pr:PROJECT)-[:USED_SKILL]->(s:SKILL)
 RETURN pr.name AS project_name, s.name AS skill;
 ```
-
-Find all skills acquired during experience
+Details of Organization worked at
 ```
-MATCH (person:PERSON {name: "Tesnim Abdi"})-[:HAS_SKILL]->(skill:SKILL)<-[:USED_SKILL]-(project:PROJECT)<-[:WORKED_ON]-(experience:EXPERIENCE)
-RETURN DISTINCT skill.name AS Skill
+MATCH (p:PERSON {name: "Tesnim Abdi"})-[:WORKED_AT]->(e:EXPERIENCE)-[:WORKED_FOR]->(c:ORGANIZATION)
+RETURN e.title, e.start_date, e.end_date, e.description, c.name AS company, c.location;
+```
+Details of Education 
+```
+MATCH (p:PERSON {name: "Tesnim Abdi"})-[:STUDIED_AT]->(e:EDUCATION)-[:EDUCATION_IN]->(u:ORGANIZATION)
+RETURN e.degree, e.graduation_date, e.CGPA, e.program, e.start_date, e.end_date, e.description, u.name AS university, u.location;
 ```
 
 
