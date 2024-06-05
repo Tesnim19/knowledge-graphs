@@ -24,12 +24,14 @@ Create a structured graph representation of the resume, including key entities s
 - Explore extracurricular activities participated in and organizations involved.
 
 Retrieve Skills Used in Projects
-```MATCH (p:PERSON {name: "Tesnim Abdi"})-[:WORKED_ON]->(pr:PROJECT)-[:USED_SKILL]->(s:SKILL)
+```
+MATCH (p:PERSON {name: "Tesnim Abdi"})-[:WORKED_ON]->(pr:PROJECT)-[:USED_SKILL]->(s:SKILL)
 RETURN pr.name AS project_name, s.name AS skill;
 ```
 
 Find all skills acquired during experience
-```MATCH (person:PERSON {name: "Tesnim Abdi"})-[:HAS_SKILL]->(skill:SKILL)<-[:USED_SKILL]-(project:PROJECT)<-[:WORKED_ON]-(experience:EXPERIENCE)
+```
+MATCH (person:PERSON {name: "Tesnim Abdi"})-[:HAS_SKILL]->(skill:SKILL)<-[:USED_SKILL]-(project:PROJECT)<-[:WORKED_ON]-(experience:EXPERIENCE)
 RETURN DISTINCT skill.name AS Skill
 ```
 
