@@ -1,0 +1,102 @@
+
+CREATE (person:PERSON {name: "Tesnim Abdi", profession: "Software Engineer", email: "tesnimabdi67@gmail.com", phone: "+251900353781", location: "Addis Ababa, Ethiopia" }),
+
+(education1:EDUCATION {degree: "B.Sc. in Software Engineering", graduation_date: "July 29, 2024", CGPA: 3.78}),
+(education2:EDUCATION {program: "MERN Stack Development", start_date: "Sep 2022", end_date: "Nov 2023", description: "Intensive 4 month Bootcamp"}),
+
+(university1:ORGANIZATION {name: "Addis Ababa Science and Technology University", location: "Addis Ababa, Ethiopia"}),
+(university2:ORGANIZATION {name: "Yenetta Code", location: "Addis Ababa, Ethiopia"}),
+
+(skill1:SKILL {name: "HTML/CSS"}),
+(skill2:SKILL {name: "Tailwind"}),
+(skill3:SKILL {name: "JavaScript"}),
+(skill4:SKILL {name: "Python"}),
+(skill5:SKILL {name: "Node.js"}),
+(skill6:SKILL {name: "MongoDB"}),
+(skill7:SKILL {name: "Express"}),
+(skill8:SKILL {name: "React"}),
+(skill9:SKILL {name: "FastAPI"}),
+(skill10:SKILL {name: "C/C++"}),
+(skill11:SKILL {name: "PHP"}),
+(skill12:SKILL {name: "Git"}),
+
+(experience1:EXPERIENCE {title: "Software Engineer Intern", start_date: "May 2022", end_date: "July 2022", description: "Participated in building the frontend of a client's website using HTML and CSS. Assisted in testing processes and filing bug fix reports."}),
+(experience2:EXPERIENCE {title: "Software Engineer Intern", start_date: "July 2023", end_date: "Oct 2023", description: "Conducted iterative requirement analysis, refining and improving features for an HR module. Utilized FastAPI to implement and optimize backend functionality for an HR module, ensuring efficient real-time data processing. Designed database ensuring scalability and performance optimization. Leveraged PostgreSQL for data storage, retrieval, and efficient handling of the HR module information."}),
+(experience3:EXPERIENCE {title: "Assistant Instructor Intern", start_date: "Dec 2023", end_date: "Present", description: "Manage student, class schedules, and session logistics. Review and provide constructive feedback on student code submissions. Assist students in troubleshooting technical issues and facilitating hands-on coding exercises. Mentor and tutor students individually to enhance their understanding and proficiency in web development. Collaborate with senior instructors to develop lesson plans and assessment criteria. Conducted code reviews and provided technical support during project development stages."}),
+
+(company1:ORGANIZATION {name: "Elilta Technologies", location: "Addis Ababa, Ethiopia"}),
+(company2:ORGANIZATION {name: "Kacha DFS", location: "Addis Ababa, Ethiopia"}),
+(company3:ORGANIZATION {name: "Yenetta Code", location: "Addis Ababa, Ethiopia"}),
+(company4:ORGANIZATION {name: "Orange Digital Center Ethiopia", location: "Addis Ababa, Ethiopia"}),
+(company5:ORGANIZATION {name: "Orange Fab Ethiopia and DOT", location: "Addis Ababa, Ethiopia"}),
+
+(cert1:CERTIFICATION {name: "Self Marketing and Assessing Marketing Opportunities", date: "Mar 2022"}),
+(cert2:CERTIFICATION {name: "Start-Up Business Skill", date: "Mar 2022"}),
+
+(project1:PROJECT {name: "Mend", description: "Mend is a website that serves as a broker between customers and technicians. Managed the project, designed and developed both the front-end and the backend of the technicians side, worked on announcement functionality of the admin side, worked on the UI of the landing page"}),
+(project2:PROJECT {name: "inkVerse", description: "Collaboratively designed and developed a dynamic bookstore website using MERN stack. Implemented a user-friendly interface for browsing and purchasing books. Integrated a MongoDB database to efficiently manage book inventory and user data. Utilized Express.js to create backend APIs for handling book listings, user authentication, and shopping cart functionality. Designed responsive front-end components using React.js for seamless user experiences across devices. Implemented features such as search, filtering, and sorting to enhance user navigation. Employed Redux for centralized state management, ensuring consistency throughout the application."}),
+
+(organization1:ORGANIZATION {name: "ChewataCon", location: "Addis Ababa, Ethiopia"}),
+(organization2:ORGANIZATION {name: "Hana’s Orphans Home", location: "Addis Ababa, Ethiopia"}),
+
+(activity1:EXTRA {name: "Volunteer Exhibitor", date: "Oct 2022", description: "Worked as an exhibitor in a gaming exhibition held at the Goethe Institute - Modern Art Museum."}),
+(activity2:EXTRA {name: "Volunteer Instructor", date: "Aug 2023", description: "Instructor for Kids Scratch Programming. Developed and delivered interactive Scratch programming lessons to children. Facilitated engaging activities to foster creativity and problem-solving skills. Provided one-on-one guidance and support to students to enhance their understanding. Collaborated with other volunteers and staff to ensure the success of the program."}),
+
+
+(person)-[:STUDIED_AT]->(education1),
+(person)-[:STUDIED_AT]->(education2),
+
+(education1)-[:EDUCATION_IN]->(university1),
+(education2)-[:EDUCATION_IN]->(university2),
+
+
+ (person)-[:HAS_SKILL]->(skill1),
+ (person)-[:HAS_SKILL]->(skill2),
+ (person)-[:HAS_SKILL]->(skill3),
+ (person)-[:HAS_SKILL]->(skill4),
+ (person)-[:HAS_SKILL]->(skill5),
+ (person)-[:HAS_SKILL]->(skill6),
+ (person)-[:HAS_SKILL]->(skill7),
+ (person)-[:HAS_SKILL]->(skill8),
+ (person)-[:HAS_SKILL]->(skill9),
+ (person)-[:HAS_SKILL]->(skill10),
+ (person)-[:HAS_SKILL]->(skill11),
+ (person)-[:HAS_SKILL]->(skill12),
+
+// Person to Experience
+(person)-[:WORKED_AT]->(experience1),
+(person)-[:WORKED_AT]->(experience2),
+(person)-[:WORKED_AT]->(experience3),
+
+// Experience to Organizations
+(experience1)-[:WORKED_FOR]->(company1),
+(experience2)-[:WORKED_FOR]->(company2),
+(experience3)-[:WORKED_FOR]->(company3),
+
+(person)-[:OBTAINED_CERTIFICATION]->(cert1),
+(person)-[:OBTAINED_CERTIFICATION]->(cert2),
+
+(cert1)-[:ISSUED_BY]->(company4),
+(cert2)-[:ISSUED_BY]->(company5),
+
+(person)-[:WORKED_ON]->(project1),
+(person)-[:WORKED_ON]->(project2),
+
+(project1)-[:PROJECT_UNDER]->(company1),
+(project2)-[:PROJECT_UNDER]->(company2),
+
+(project1)-[:USED_SKILL]->(skill1),
+(project1)-[:USED_SKILL]->(skill3),
+(project1)-[:USED_SKILL]->(skill11),
+(project2)-[:USED_SKILL]->(skill5),
+(project2)-[:USED_SKILL]->(skill6),
+(project2)-[:USED_SKILL]->(skill7),
+(project2)-[:USED_SKILL]->(skill8),
+(project2)-[:USED_SKILL]->(skill12),
+
+(person)-[:PARTICIPATED_IN]->(activity1),
+(person)-[:PARTICIPATED_IN]->(activity2),
+
+(activity1)-[:ORGANIZED_BY]->(organization1),
+(activity2)-[:ORGANIZED_BY]->(organization2);
+
